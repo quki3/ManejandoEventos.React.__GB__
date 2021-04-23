@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel" >
+    class Toggle extends React.Component {
+        constructor(props){
+            super(props);
+            this.state = {isToggleOn: true};
+            this.handleClick = this.handleClick.bind(this); {/*este enlace es necesario para hacer que this funcione en el callback*/}
+        console.log(this.state.isToggleOn)
+        }
+        handleClick(){
+            this.setState(state =>({
+                isToggleOn: !state.isToggleOn
+            }));
+        }
+        render(){
+            console.log(this.state.isToggleOn)
+            return (
+                <button onClick={this.handleClick}>
+                    {this.state.isToggleOn? 'ON' : 'OFF'}
+                </button>
+            );
+        }
+    }
+    ReactDOM.render(
+        <Toggle/>,document.getElementById('root')
+    );
+    </script>
+   
+  </body>
+</html>
